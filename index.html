@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aesthetic WebGIS Project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/css/ol.css" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
+    
+    
+</head>
+<body>
+    <header>
+        <h1 class="header-title">🌏 Web Geographic Information System</h1>
+        
+        <div class="header-controls">
+            
+            <form id="state-search-form" class="search-container">
+                <input type="search" id="state-search-input" placeholder="Search State or District..." aria-label="Search State" required>
+                <button type="submit" class="search-button">
+                    <i class="material-icons">search</i>
+                </button>
+            </form>
+
+            <span id="current-date" class="header-date"></span>
+
+            <button id="profile-button" class="profile-btn" onclick="toggleProfileMenu()">
+                <i class="material-icons">person</i> User Profile
+            </button>
+            
+            <div id="profile-menu" class="profile-dropdown">
+                <a href="#dashboard">Dashboard</a>
+                <a href="#settings">Settings</a>
+                <a href="#logout">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div id="main-content">
+        <aside id="sidebar">
+            <h2 class="sidebar-header">🛠️ Map Tools & Controls</h2>
+
+            <section class="control-group">
+                <h3 class="panel-header">🗺️ Base Map View</h3>
+                <div id="base-map-views">
+                    <label><input type="radio" name="baseMap" value="OSM" checked> Default (OSM)</label><br>
+                    <label><input type="radio" name="baseMap" value="Satellite"> Satellite View</label><br>
+                    <label><input type="radio" name="baseMap" value="Terrain"> Terrain View</label>
+                </div>
+            </section>
+            <hr>
+
+            <section class="control-group">
+                <h3 class="panel-header">📏 Measurement Type</h3>
+                <select id="measurement-type" class="control-select">
+                    <option value="none">Select Measure option</option>
+                    <option value="Length">Line Distance (km/m)</option>
+                    <option value="Area">Polygon Area (km²/m²)</option>
+                    <option value="Radius">Circle Radius (km/m)</option>
+                    <option value="Clear">Clear All Measurements</option>
+                </select>
+                <p class="help-text">Select tool, then click map to start drawing.</p>
+            </section>
+            <hr>
+
+            <section class="control-group">
+                <h3 class="panel-header">🔎 Get Feature Info</h3>
+                <select id="get-info-option" class="control-select">
+                    <option value="none">Select Info option</option>
+                    <option value="State">Get State Data</option>
+                    <option value="District">Get District Data</option>
+                    <option value="Coordinates">Show Map Coordinates</option>
+                </select>
+                <p class="help-text">Click on the map to get feature data.</p>
+            </section>
+            <hr>
+
+            <section class="control-group">
+                <h3 class="panel-header">✨ Data Overlays</h3>
+                <div id="overlay-toggles">
+                    <label><input type="checkbox" id="toggle_states" checked> India States</label><br>
+                    <label><input type="checkbox" id="toggle_districts" checked> India Districts</label><br>
+                    <label><input type="checkbox" id="toggle_roads" checked> Major Roads</label>
+                </div>
+            </section>
+        </aside>
+        
+        <div id="resize-handle"></div>
+
+        <div id="map" class="map"></div>
+    </div>
+
+    <div id="popup" class="ol-popup">
+        <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+        <div id="popup-content"></div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 WebGIS Summer Training Project | Shipra, ISSA Report | Built with OpenLayers & JS</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
